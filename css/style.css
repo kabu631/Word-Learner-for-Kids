@@ -189,11 +189,11 @@ button {
   to { transform: rotate(360deg); }
 }
 
-/* ============ Top Bar ============ */
+/* ============ Top Bar (Sticky, Never Hides) ============ */
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: 990;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -202,6 +202,20 @@ button {
   border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   transition: background 0.3s, border-color 0.3s;
+}
+
+.topbar-row-1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex: 1;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .sr-only {
@@ -1300,52 +1314,91 @@ table.vocab {
     width: 100%;
   }
 
-  /* Topbar Header */
+  /* Topbar Header (Sticky, 2 rows matching mobile mockup) */
   .topbar {
-    padding: 8px 12px;
-    flex-wrap: wrap;
-    gap: 8px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 990;
+    padding: 8px 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  [data-theme="paper"] .topbar { background: #fdfbf7; }
+  [data-theme="dark"] .topbar { background: #1e293b; }
+
+  .topbar-row-1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
   }
   .brand-logo-img {
-    height: 36px;
-    max-width: 160px;
-  }
-  .topbar-actions {
-    width: 100%;
-    margin-left: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    padding-top: 6px;
-    border-top: 1px solid var(--border);
+    height: 38px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
   }
   .theme-selector {
-    margin-left: auto;
-  }
-  .stats {
-    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 6px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-  }
-  .stats::-webkit-scrollbar { display: none; }
-  .stat {
-    flex: 1;
-    justify-content: center;
-    padding: 5px 8px;
-    gap: 5px;
-    font-size: 0.82rem;
+    background: var(--subtle-bg);
+    border: 1px solid var(--border);
     border-radius: 999px;
-    min-width: 0;
-    white-space: nowrap;
+    padding: 3px;
+    gap: 2px;
+    margin-left: auto;
+    flex-shrink: 0;
   }
-  .stat-icon { font-size: 0.95rem; }
-  .stat b { font-size: 0.82rem; }
+  .theme-btn {
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+  .theme-label {
+    display: none;
+  }
+
+  /* Row 2: 4 equal pill badges */
+  .stats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-top: 0;
+  }
+  .stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 6px 2px;
+    border-radius: 999px;
+    background: var(--subtle-bg);
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    white-space: nowrap;
+    min-width: 0;
+  }
+  .stat-icon { font-size: 0.95rem; line-height: 1; }
+  .stat b { font-size: 0.82rem; line-height: 1; }
 
   /* Panel container */
   .panel {

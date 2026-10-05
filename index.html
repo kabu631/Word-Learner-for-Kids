@@ -11,10 +11,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261005_clean_header" />
+  <link rel="stylesheet" href="css/style.css?v=20261005_sticky_header" />
   <link rel="icon" type="image/png" href="assets/logo.png" />
   <style>
-    /* Direct inline overrides: absolutely zero blur on backdrop */
+    /* Direct inline overrides: sticky topbar and absolutely zero blur on backdrop */
+    .topbar {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 990 !important;
+    }
     .scrim {
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
@@ -37,19 +42,21 @@
   <div class="bg-decor" aria-hidden="true"><div class="shape-1"></div><div class="shape-2"></div></div>
 
   <header class="topbar">
-    <button id="menu-toggle" class="icon-btn menu-toggle" aria-label="Open calendar">☰</button>
-    <div class="brand">
-      <img src="assets/logo.png" alt="Shabda Sathi · शब्द साथी · Daily Vocabulary Grade 6" class="brand-logo-img" />
-      <h1 class="sr-only">Shabda Sathi – शब्द साथी · Daily Vocabulary · Grade 6</h1>
-    </div>
-    <div class="topbar-actions">
+    <div class="topbar-row-1">
+      <div class="topbar-left">
+        <button id="menu-toggle" class="icon-btn menu-toggle" aria-label="Open calendar">☰</button>
+        <div class="brand">
+          <img src="assets/logo.png" alt="Shabda Sathi · शब्द साथी · Daily Vocabulary Grade 6" class="brand-logo-img" />
+          <h1 class="sr-only">Shabda Sathi – शब्द साथी · Daily Vocabulary · Grade 6</h1>
+        </div>
+      </div>
       <div class="theme-selector" id="theme-selector" aria-label="Theme selection">
         <button class="theme-btn active" data-theme="light" title="Clean & Cheerful (Default)">☀️ <span class="theme-label">Light</span></button>
         <button class="theme-btn" data-theme="paper" title="Warm Paper / Book">📜 <span class="theme-label">Book</span></button>
         <button class="theme-btn" data-theme="dark" title="Soft Slate Dark">🌙 <span class="theme-label">Dark</span></button>
       </div>
-      <div class="stats" id="stats"></div>
     </div>
+    <div class="stats" id="stats"></div>
   </header>
 
   <div class="layout">
