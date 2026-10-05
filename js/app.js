@@ -458,6 +458,7 @@
   const sidebarClose = $('#sidebar-close');
   if (sidebarClose) sidebarClose.onclick = closeSidebar;
   scrim.onclick = closeSidebar;
+  closeSidebar();
   $('#go-today').onclick = () => {
     if (dayByKey[todayKey]) navigate({ type: 'day', key: todayKey });
     else toast(todayKey < days[0].key ? 'The course has not started yet.' : 'The 6-month course is finished! 🎓');

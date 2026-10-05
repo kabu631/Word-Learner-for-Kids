@@ -538,7 +538,9 @@ button {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.45);
-  z-index: 998;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  z-index: 9998;
   display: none;
 }
 .scrim.show {
@@ -1269,7 +1271,7 @@ table.vocab {
     max-width: 88vw;
     height: 100vh;
     max-height: 100vh;
-    z-index: 1000;
+    z-index: 99999;
     border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
     transform: translateX(-105%);
     transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
