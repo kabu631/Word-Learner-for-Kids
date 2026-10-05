@@ -350,6 +350,7 @@ button {
 
 /* ============ Sidebar Tree (100% Solid Opaque Background) ============ */
 .sidebar {
+  grid-column: 1;
   position: sticky;
   top: 80px;
   align-self: start;
@@ -528,9 +529,23 @@ button {
 
 /* ============ Content Panels (100% Solid Opaque Background) ============ */
 .content {
+  grid-column: 2;
   min-width: 0;
+  width: 100%;
   position: relative;
   z-index: 1;
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(3px);
+  z-index: 999;
+  display: none;
+}
+.scrim.show {
+  display: block;
 }
 
 .panel {
@@ -1231,6 +1246,7 @@ table.vocab {
     place-items: center;
   }
   .sidebar {
+    grid-column: auto;
     position: fixed;
     top: 0;
     left: 0;
@@ -1256,16 +1272,9 @@ table.vocab {
     display: grid;
     place-items: center;
   }
-  .scrim {
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.55);
-    backdrop-filter: blur(3px);
-    z-index: 999;
-    display: none;
-  }
-  .scrim.show {
-    display: block;
+  .content {
+    grid-column: 1;
+    min-width: 0;
   }
   .topbar {
     padding: 10px 16px;
