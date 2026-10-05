@@ -11,14 +11,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261005_sticky_header" />
+  <link rel="stylesheet" href="css/style.css?v=20261005_fixed_header" />
   <link rel="icon" type="image/png" href="assets/logo.png" />
   <style>
-    /* Direct inline overrides: sticky topbar and absolutely zero blur on backdrop */
+    :root {
+      --topbar-h: 70px;
+    }
+    @media (max-width: 960px) {
+      :root {
+        --topbar-h: 104px;
+      }
+    }
+    /* Fixed topbar: permanently anchored at top, never gets hidden on scroll */
     .topbar {
-      position: sticky !important;
+      position: fixed !important;
       top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
       z-index: 990 !important;
+    }
+    .layout {
+      padding-top: calc(var(--topbar-h) + 20px) !important;
     }
     .scrim {
       backdrop-filter: none !important;
@@ -27,6 +42,7 @@
     }
     @media (max-width: 960px) {
       .layout {
+        padding-top: calc(var(--topbar-h) + 12px) !important;
         z-index: auto !important;
       }
       .sidebar {
@@ -93,6 +109,6 @@
   <script src="js/data/words-3.js?v=2"></script>
   <script src="js/data/words-4.js?v=2"></script>
   <script src="js/data/words-5.js?v=2"></script>
-  <script src="js/app.js?v=5"></script>
+  <script src="js/app.js?v=6"></script>
 </body>
 </html>

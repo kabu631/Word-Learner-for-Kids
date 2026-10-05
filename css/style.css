@@ -60,6 +60,7 @@
 
   --font: 'Outfit', system-ui, -apple-system, sans-serif;
   --font-np: 'Mukta', 'Noto Sans Devanagari', sans-serif;
+  --topbar-h: 70px;
 }
 
 /* Warm Paper Theme Option */
@@ -137,11 +138,16 @@ body {
   background-attachment: fixed;
   color: var(--text);
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-x: clip;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+html {
+  overflow-x: clip;
 }
 
 button {
@@ -189,10 +195,14 @@ button {
   to { transform: rotate(360deg); }
 }
 
-/* ============ Top Bar (Sticky, Never Hides) ============ */
+/* ============ Top Bar (Fixed, Never Hides On Scroll) ============ */
 .topbar {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
   z-index: 990;
   display: flex;
   align-items: center;
@@ -200,7 +210,7 @@ button {
   padding: 10px 24px;
   background: var(--panel-bg);
   border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
   transition: background 0.3s, border-color 0.3s;
 }
 
@@ -352,20 +362,21 @@ button {
   display: grid;
   grid-template-columns: 310px 1fr;
   gap: 24px;
-  padding: 20px 24px;
+  padding: calc(var(--topbar-h, 72px) + 20px) 24px 20px;
   max-width: 1480px;
   width: 100%;
   margin: 0 auto;
   position: relative;
+  box-sizing: border-box;
 }
 
 /* ============ Sidebar Tree (100% Solid Opaque Background) ============ */
 .sidebar {
   grid-column: 1;
   position: sticky;
-  top: 80px;
+  top: calc(var(--topbar-h, 72px) + 16px);
   align-self: start;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - var(--topbar-h, 72px) - 32px);
   display: flex;
   flex-direction: column;
   background: #ffffff !important;
@@ -1247,10 +1258,15 @@ table.vocab {
 
 /* ============ Mobile / Responsive Layout (< 960px) ============ */
 @media (max-width: 960px) {
+  :root {
+    --topbar-h: 104px;
+  }
+
   .layout {
     grid-template-columns: 1fr;
-    padding: 14px 16px;
+    padding: calc(var(--topbar-h, 106px) + 12px) 14px 20px;
     gap: 16px;
+    box-sizing: border-box;
   }
 
   .menu-toggle {
@@ -1314,10 +1330,14 @@ table.vocab {
     width: 100%;
   }
 
-  /* Topbar Header (Sticky, 2 rows matching mobile mockup) */
+  /* Topbar Header (Fixed, 2 rows matching mobile mockup) */
   .topbar {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
     z-index: 990;
     padding: 8px 12px 10px;
     display: flex;
@@ -1325,7 +1345,7 @@ table.vocab {
     gap: 8px;
     background: #ffffff;
     border-bottom: 1px solid var(--border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
   }
   [data-theme="paper"] .topbar { background: #fdfbf7; }
   [data-theme="dark"] .topbar { background: #1e293b; }

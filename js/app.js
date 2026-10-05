@@ -541,5 +541,25 @@
     footerRange.textContent = `${shortDate(days[0].date)} ${days[0].date.getFullYear()} – ${shortDate(days[days.length - 1].date)} ${days[days.length - 1].date.getFullYear()} (184 Days · 1,104 Words)`;
   }
 
+  // ---------- Keep fixed topbar height dynamically synced to CSS variable ----------
+  function syncTopbarHeight() {
+    const tb = document.querySelector('.topbar');
+    if (tb) {
+      const h = tb.getBoundingClientRect().height;
+      if (h > 0) {
+        document.documentElement.style.setProperty('--topbar-h', `${Math.round(h)}px`);
+      }
+    }
+  }
+  syncTopbarHeight();
+  window.addEventListener('resize', syncTopbarHeight, { passive: true });
+  window.addEventListener('orientationchange', syncTopbarHeight, { passive: true });
+  if (typeof ResizeObserver !== 'undefined') {
+    try {
+      const tb = document.querySelector('.topbar');
+      if (tb) new ResizeObserver(syncTopbarHeight).observe(tb);
+    } catch (_) {}
+  }
+
   render();
 })();
