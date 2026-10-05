@@ -9,9 +9,9 @@
 
   // ---------- Config ----------
   const WORDS_PER_DAY = 6;
-  const START = new Date(2026, 9, 4);  // 4 Oct 2026 (yesterday at launch)
-  const END = new Date(2027, 3, 5);    // 5 Apr 2027 (six months ahead)
-  const STORAGE_KEY = 'shabdaSathi.progress.v1';
+  const START = new Date(2026, 9, 6);  // 6 Oct 2026 (tomorrow)
+  const END = new Date(2027, 3, 7);    // 7 Apr 2027 (six months ahead, 184 days)
+  const STORAGE_KEY = 'shabdaSathi.progress.v2';
   const PREF_KEY = 'shabdaSathi.prefs.v2';
   const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -114,7 +114,7 @@
 
   // ---------- View state ----------
   const todayDay = dayByKey[todayKey];
-  let view = todayDay ? { type: 'day', key: todayKey } : { type: 'month', key: months[0].key };
+  let view = todayDay ? { type: 'day', key: todayKey } : { type: 'day', key: days[0].key };
   const openNodes = new Set();
   function openFor(v) {
     if (v.type === 'day') { const d = dayByKey[v.key]; openNodes.add(d.monthKey); openNodes.add(`${d.monthKey}-w${d.week}`); }
@@ -402,7 +402,7 @@
       <div class="lock-icon">🔒</div>
       <h3>These words are locked</h3>
       <p>They unlock on <b>${longDate(d.date)}</b> — ${daysAway === 1 ? 'tomorrow' : `in ${daysAway} days`}.</p>
-      <p>Finish today's words first! 📖</p>
+      <p>${d.index === 0 && today < d.date ? "Get ready! Your 6-month daily vocabulary practice starts tomorrow! 🚀" : "Finish today's words first! 📖"}</p>
       <div class="countdown" id="countdown"></div>
       <div class="ghost-rows">${'<div></div>'.repeat(WORDS_PER_DAY)}</div>`;
     const tick = () => {
@@ -461,7 +461,14 @@
   closeSidebar();
   $('#go-today').onclick = () => {
     if (dayByKey[todayKey]) navigate({ type: 'day', key: todayKey });
-    else toast(todayKey < days[0].key ? 'The course has not started yet.' : 'The 6-month course is finished! 🎓');
+    else {
+      if (todayKey < days[0].key) {
+        toast('🚀 Practice starts tomorrow on 6 Oct! Day 1 is counting down.');
+        navigate({ type: 'day', key: days[0].key });
+      } else {
+        toast('The 6-month course is finished! 🎓');
+      }
+    }
   };
 
   // ---------- Midnight rollover: unlock the new day automatically ----------
