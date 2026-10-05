@@ -909,7 +909,7 @@ button {
 table.vocab {
   width: 100%;
   border-collapse: collapse;
-  min-width: 680px;
+  min-width: 600px;
 }
 .vocab th {
   text-align: left;
