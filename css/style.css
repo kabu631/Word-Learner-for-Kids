@@ -256,37 +256,35 @@ button {
 
 .stats {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
   flex-wrap: wrap;
 }
 .stat {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 12px;
-  border-radius: 12px;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
   background: var(--subtle-bg);
   border: 1px solid var(--border);
-  transition: transform 0.2s, background 0.2s;
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
+  cursor: default;
 }
 .stat:hover {
   transform: translateY(-1px);
   background: var(--subtle-hover);
+  border-color: var(--border-strong);
 }
 .stat-icon {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  line-height: 1;
 }
 .stat b {
-  display: block;
-  font-size: 0.98rem;
-  line-height: 1.1;
+  font-size: 0.88rem;
   font-weight: 700;
+  line-height: 1;
   color: var(--text);
-}
-.stat small {
-  color: var(--text-muted);
-  font-size: 0.7rem;
-  font-weight: 500;
 }
 
 /* Theme Selector Pill */
@@ -1242,22 +1240,13 @@ table.vocab {
   }
 
   .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    width: auto;
-    height: 40px;
-    padding: 0 14px;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
     border-radius: 10px;
-    font-weight: 700;
-  }
-  .menu-toggle .menu-icon {
-    font-size: 1.15rem;
-    line-height: 1;
-  }
-  .menu-toggle .menu-text {
-    font-size: 0.84rem;
-    letter-spacing: 0.2px;
+    font-size: 1.25rem;
+    padding: 0;
   }
 
   /* Offcanvas Sliding Drawer Sidebar */
@@ -1313,39 +1302,50 @@ table.vocab {
 
   /* Topbar Header */
   .topbar {
-    padding: 10px 14px;
+    padding: 8px 12px;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px 10px;
   }
   .brand-logo-img {
-    height: 40px;
-    max-width: 180px;
+    height: 36px;
+    max-width: 160px;
   }
   .topbar-actions {
     width: 100%;
     margin-left: 0;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
     gap: 8px;
-    padding-top: 8px;
+    padding-top: 6px;
     border-top: 1px solid var(--border);
   }
   .theme-selector {
-    align-self: flex-end;
+    margin-left: auto;
   }
   .stats {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
   }
+  .stats::-webkit-scrollbar { display: none; }
   .stat {
-    padding: 7px 10px;
-    gap: 8px;
+    flex: 1;
+    justify-content: center;
+    padding: 5px 8px;
+    gap: 5px;
+    font-size: 0.82rem;
+    border-radius: 999px;
+    min-width: 0;
+    white-space: nowrap;
   }
-  .stat-icon { font-size: 1.1rem; }
-  .stat b { font-size: 0.88rem; }
-  .stat small { font-size: 0.68rem; }
+  .stat-icon { font-size: 0.95rem; }
+  .stat b { font-size: 0.82rem; }
 
   /* Panel container */
   .panel {
@@ -1628,24 +1628,23 @@ table.vocab {
   }
   .menu-toggle {
     height: 36px;
-    padding: 0 10px;
+    width: 36px;
   }
-  .menu-toggle .menu-text {
-    font-size: 0.78rem;
+  .theme-label {
+    display: none;
   }
   .theme-btn {
-    padding: 3px 7px;
-    font-size: 0.7rem;
+    padding: 3px 8px;
+    font-size: 0.82rem;
   }
   .stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
+    gap: 4px;
   }
   .stat {
-    padding: 5px 8px;
+    padding: 4px 6px;
+    font-size: 0.78rem;
   }
-  .stat b { font-size: 0.82rem; }
-  .stat small { font-size: 0.62rem; }
+  .stat b { font-size: 0.78rem; }
 
   /* Stack synonym and antonym vertically if needed on ultra-narrow phones */
   table.vocab tr {

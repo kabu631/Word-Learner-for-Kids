@@ -139,10 +139,10 @@
     const s = stats();
     const pct = Math.round((s.completed / s.total) * 100);
     $('#stats').innerHTML = `
-      <div class="stat"><span class="stat-icon">📅</span><div><b>${shortDate(today)} ${today.getFullYear()}</b><small>${WEEKDAYS[today.getDay()]} · Today</small></div></div>
-      <div class="stat"><span class="stat-icon">🔥</span><div><b>${s.streak} day${s.streak === 1 ? '' : 's'}</b><small>Streak</small></div></div>
-      <div class="stat"><span class="stat-icon">📚</span><div><b>${s.words}</b><small>Words learned</small></div></div>
-      <div class="stat"><span class="stat-icon">🏆</span><div><b>${pct}%</b><small>${s.completed}/${s.total} days</small></div></div>`;
+      <div class="stat" title="Date: ${shortDate(today)} ${today.getFullYear()} (${WEEKDAYS[today.getDay()]})"><span class="stat-icon">📅</span><b>${shortDate(today)}</b></div>
+      <div class="stat" title="Streak: ${s.streak} day${s.streak === 1 ? '' : 's'}"><span class="stat-icon">🔥</span><b>${s.streak}</b></div>
+      <div class="stat" title="Words learned: ${s.words}"><span class="stat-icon">📚</span><b>${s.words}</b></div>
+      <div class="stat" title="Progress: ${pct}% (${s.completed}/${s.total} days)"><span class="stat-icon">🏆</span><b>${pct}%</b></div>`;
   }
 
   // ---------- Sidebar tree ----------
