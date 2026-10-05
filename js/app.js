@@ -529,6 +529,10 @@
     btn.onclick = () => applyTheme(btn.dataset.theme);
   });
   applyTheme(prefs.theme || 'light');
+  const footerRange = $('#footer-range');
+  if (footerRange) {
+    footerRange.textContent = `${shortDate(days[0].date)} ${days[0].date.getFullYear()} – ${shortDate(days[days.length - 1].date)} ${days[days.length - 1].date.getFullYear()} (184 Days · 1,104 Words)`;
+  }
 
   render();
 })();
