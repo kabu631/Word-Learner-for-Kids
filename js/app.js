@@ -12,7 +12,7 @@
   const START = new Date(2026, 9, 4);  // 4 Oct 2026 (yesterday at launch)
   const END = new Date(2027, 3, 5);    // 5 Apr 2027 (six months ahead)
   const STORAGE_KEY = 'shabdaSathi.progress.v1';
-  const PREF_KEY = 'shabdaSathi.prefs.v1';
+  const PREF_KEY = 'shabdaSathi.prefs.v2';
   const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -69,7 +69,7 @@
   const load = (k, fallback) => { try { return JSON.parse(localStorage.getItem(k)) || fallback; } catch { return fallback; } };
   const progress = load(STORAGE_KEY, { days: {} });
   if (!progress.days || typeof progress.days !== 'object') progress.days = {};
-  const prefs = load(PREF_KEY, { hideNepali: false, theme: 'light' });
+  const prefs = load(PREF_KEY, { hideNepali: true, theme: 'light' });
   const save = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
   const savePrefs = () => localStorage.setItem(PREF_KEY, JSON.stringify(prefs));
 
@@ -336,7 +336,9 @@
         <td><span class="pill ant">${esc(w.antonym)}</span></td>
         <td><button class="check${learned ? ' on' : ''}" id="check-${d.key}-${i}" aria-label="Mark ${esc(w.word)} as learned" ${completed ? 'disabled' : ''}>✓</button></td>`;
       tr.querySelector('.speak').onclick = () => speak(w.word);
-      tr.querySelector('.nepali').onclick = (e) => e.currentTarget.classList.remove('hidden');
+      const reveal = () => { const n = tr.querySelector('.nepali'); if (n) n.classList.remove('hidden'); };
+      tr.querySelector('.nepali').onclick = reveal;
+      if (tr.children[2]) tr.children[2].onclick = reveal;
       tr.querySelector('.check').onclick = () => {
         const rr = getDayRecord(d.key);
         rr.learned[i] = !rr.learned[i];
