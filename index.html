@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shabda Sathi – Daily Vocabulary for Grade 6 | English–Nepali Word Practice</title>
+  <meta name="description" content="Daily English vocabulary practice for Grade 6 students in Kathmandu. Learn 6 words a day with Nepali meanings, synonyms and antonyms – organised by month, week and day." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true"><div class="shape-1"></div><div class="shape-2"></div></div>
+
+  <header class="topbar">
+    <button id="menu-toggle" class="icon-btn menu-toggle" aria-label="Open calendar menu">☰</button>
+    <div class="brand">
+      <img src="assets/logo.png" alt="Shabda Sathi · शब्द साथी · Daily Vocabulary Grade 6" class="brand-logo-img" />
+      <h1 class="sr-only">Shabda Sathi – शब्द साथी · Daily Vocabulary · Grade 6</h1>
+    </div>
+    <div class="topbar-actions">
+      <div class="theme-selector" id="theme-selector" aria-label="Theme selection">
+        <button class="theme-btn active" data-theme="light" title="Clean & Cheerful (Default)">☀️ Light</button>
+        <button class="theme-btn" data-theme="paper" title="Warm Paper / Book">📜 Book</button>
+        <button class="theme-btn" data-theme="dark" title="Soft Slate Dark">🌙 Dark</button>
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Calendar navigation">
+      <div class="sidebar-head">
+        <span>Calendar</span>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button id="go-today" class="chip-btn">Go to Today</button>
+          <button id="sidebar-close" class="icon-btn sidebar-close-btn" aria-label="Close calendar">✕</button>
+        </div>
+      </div>
+      <nav id="tree" class="tree"></nav>
+      <div class="legend">
+        <span><i class="dot today"></i>Today</span>
+        <span><i class="dot completed"></i>Done</span>
+        <span><i class="dot missed"></i>Missed</span>
+        <span><i class="dot locked"></i>Locked</span>
+      </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <main class="content" id="content" aria-live="polite"></main>
+  </div>
+
+  <footer class="footer">
+    Made for daily practice · Progress is saved on this device · <span id="footer-range"></span>
+  </footer>
+
+  <div id="confetti" aria-hidden="true"></div>
+
+  <script src="js/data/words-1.js?v=2"></script>
+  <script src="js/data/words-2.js?v=2"></script>
+  <script src="js/data/words-3.js?v=2"></script>
+  <script src="js/data/words-4.js?v=2"></script>
+  <script src="js/data/words-5.js?v=2"></script>
+  <script src="js/app.js?v=2"></script>
+</body>
+</html>
